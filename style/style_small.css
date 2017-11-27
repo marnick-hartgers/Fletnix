@@ -1,0 +1,15 @@
+article.content{
+    margin: 0em 0em;
+    padding:1em;
+}
+
+div.content_flexbox{
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+article.flexbox_content{
+    margin: 1em 1em;
+    padding:1em;
+}

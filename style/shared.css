@@ -1,0 +1,128 @@
+/*Default style van Marnick Hartgers*/
+*{
+    padding:0;
+    margin:0;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: rgb(106,232,135);/*color 2*/
+}
+/* header */
+header{
+    position: fixed;
+    left: 0px;
+    top:0px;
+    right: 0px;
+    height: 6em;
+    box-shadow: 0 0.2em 0.2em rgb(100,150,100);
+    background-color: rgb(117,255,188); /*color 3*/
+    transition: height 0.3s;
+    overflow: hidden;
+}
+#header_toggle_button[type=checkbox]:checked + header{
+    height: 15em;
+    overflow: visible;
+}
+h1.header_title{
+    margin: 0;
+    padding-left: 1em;
+    padding-top: 0.90em;
+}
+h1.header_title> span{
+    vertical-align: top;
+}
+.header_index{
+    position: absolute;
+    top: 6em;
+    left: 6.5em;
+    right: 6.5em;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+.header_index>ul{
+    list-style: none;
+}
+.header_index li{
+    background-color: rgba(0,0,0,0.1);
+    padding: 10px;
+    width: 100px;
+    height: 20px;
+    position: relative;
+}
+.header_index>ul>li>ul{
+    list-style: none;
+    display: block;
+    position: absolute;
+    left: 0%;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+.header_index>ul>li:hover>ul{
+    left: 100%;
+    opacity: 1;
+    pointer-events: all;
+    background: rgb(137,255,129);
+}
+
+label.header_toggle_button_label{
+    margin-right: 1em;
+}
+label.header_toggle_button_label > img{
+    width: 1.1em;
+    height: 1.1em;
+}
+#header_toggle_button{
+    position: fixed;
+    left: -10em;
+}
+
+/* end header*/
+
+/* content*/
+main.page-content{
+    margin-top: 120px;
+    
+}
+
+    article.content{
+        background-color: rgb(137,255,129);
+        box-shadow: 0.2em 0.2em 0.2em rgb(100,150,100);
+        border-radius: 0.3em;
+    }
+    
+    div.content_flexbox{
+        display: flex;
+    }
+    
+    article.flexbox_content{
+        background-color: rgb(137,255,129);
+        box-shadow: 0.2em 0.2em 0.2em rgb(100,150,100);
+        border-radius: 0.3em;
+    }
+
+section.sub-content{
+    border-left: solid white 1px;
+}
+
+.color1{
+    background-color: rgb(137,255,129);
+}
+.color2{
+    background-color: rgb(106,232,135);
+}
+.color3{
+    background-color: rgb(117,255,188);
+}
+.color4{
+    background-color: rgb(158,232,106);
+}
+.color5{
+    background-color: rgb(222,255,117);
+}
+/* end content */

@@ -1,0 +1,22 @@
+article.content{
+    background-color: rgb(137,255,129);
+    margin: 1em 4em;
+    padding:1em;
+    box-shadow: 0.2em 0.2em 0.2em rgb(100,150,100);
+    border-radius: 0.3em;
+}
+
+div.content_flexbox{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+article.flexbox_content{
+    background-color: rgb(137,255,129);
+    margin: 1em 1em;
+    padding:1em;
+    box-shadow: 0.2em 0.2em 0.2em rgb(100,150,100);
+    border-radius: 0.3em;
+}
