@@ -1,0 +1,4 @@
+article.content a, article.content a:hover, article.content a:active, article.content a:visited {
+    color: rgb(255,255,240);
+    text-decoration: none;
+}
