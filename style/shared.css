@@ -1,11 +1,22 @@
 /*Default style van Marnick Hartgers*/
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
 *{
     padding:0;
     margin:0;
 }
 
 html {
-    font-family: 'Roboto', 'Open Sans', sans-serif;
+    font-family: 'Roboto', 'Open Sans', serif;
     color: rgb(255,255,240);
 }
 body{
