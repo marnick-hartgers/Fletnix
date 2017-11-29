@@ -3,11 +3,16 @@ header .profile {
     margin-right: 5%;
 }
 
-article.content{
+.content{
     margin: 1em 4em;
     padding:1em;
     border-radius: 0.3em;
 }
+
+.content>section {
+    width: 33%;
+}
+
 
 div.content_flexbox{
     display: flex;
@@ -22,6 +27,3 @@ article.flexbox_content{
     border-radius: 0.3em;
 }
 
-article.content section {
-    width: 33%;
- }
