@@ -10,3 +10,7 @@
     float: right;
     width: 45%;
 }
+
+.strike {
+    text-line-through: single;
+}
