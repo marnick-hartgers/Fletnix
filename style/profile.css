@@ -1,0 +1,23 @@
+.content p {
+
+}
+
+.content section {
+ width: 33%;
+}
+
+table {
+    width: 80%;
+}
+td:nth-of-type(odd) {
+    width: 20%;
+    text-indent: 10px;
+}
+
+td:nth-of-type(even) {
+    width: 30%;
+}
+
+tr:last-of-type td {
+    text-align: center;
+}

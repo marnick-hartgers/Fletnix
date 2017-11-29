@@ -2,3 +2,15 @@ article.content a, article.content a:hover, article.content a:active, article.co
     color: rgb(255,255,240);
     text-decoration: none;
 }
+
+article.content{
+    width: 30%;
+}
+
+article.content p {
+    float: right;
+    width: 79%;
+}
+article.content img {
+    width: 20%;
+}

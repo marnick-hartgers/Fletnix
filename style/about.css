@@ -1,0 +1,11 @@
+.about .content {
+    width: 45%;
+}
+
+.about .content p {
+    margin-bottom: 10px;
+}
+
+.about .content img {
+    float: right;
+}
