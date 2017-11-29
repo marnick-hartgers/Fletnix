@@ -21,3 +21,8 @@ td:nth-of-type(even) {
 tr:last-of-type td {
     text-align: center;
 }
+.subscription_block{
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+}
