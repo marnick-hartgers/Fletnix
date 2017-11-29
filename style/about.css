@@ -1,11 +1,12 @@
-.about .content {
-    width: 45%;
+.about .flexbox_content {
+    min-width: 200px;
+    max-width: 45%;
 }
 
-.about .content p {
+.about .flexbox_content p {
     margin-bottom: 10px;
 }
 
-.about .content img {
+.about .flexbox_content img {
     float: right;
 }
