@@ -1,7 +1,3 @@
-.content p {
-
-}
-
 .content section {
  width: 33%;
 }
@@ -19,8 +15,10 @@ td:nth-of-type(even) {
 }
 
 tr:last-of-type td {
-    text-align: center;
+    text-align: left;
+    text-indent: 10px;
 }
+
 .subscription_block{
     border-radius: 4px;
     margin: 5px;

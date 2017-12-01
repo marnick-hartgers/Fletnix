@@ -3,13 +3,14 @@
     padding:1em;
 }
 
-div.content_flexbox{
-    justify-content: center;
+div.flex {
+    justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
 }
 
-article.flexbox_content{
+article.flex {
     margin: 1em 1em;
     padding:1em;
+    width: 100%;
 }

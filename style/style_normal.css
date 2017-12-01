@@ -14,14 +14,18 @@ header .profile {
 }
 
 
-div.content_flexbox{
+div.flex, main.flex{
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
 }
 
-article.flexbox_content{
+main.flex {
+    justify-content: space-around;
+}
+
+article.flex{
     margin: 1em 1em;
     padding:1em;
     border-radius: 0.3em;
