@@ -19,3 +19,8 @@ tr:last-of-type td {
     text-indent: 10px;
 }
 
+.subscription_block{
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+}
