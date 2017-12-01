@@ -3,7 +3,6 @@ article.content a, article.content a:hover, article.content a:active, article.co
     text-decoration: none;
 }
 
-
 article.content p {
     float: right;
     width: 79%;

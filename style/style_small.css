@@ -3,10 +3,13 @@
     padding:1em;
 }
 
-.flex{
+div.flex {
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
+}
+
+article.flex {
     margin: 1em 1em;
     padding:1em;
     width: 100%;
