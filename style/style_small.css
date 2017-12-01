@@ -1,3 +1,8 @@
+header .profile {
+    float: right;
+    margin-right: 5%;
+}
+
 .content{
     margin: 0em 0em;
     padding:1em;
