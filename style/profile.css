@@ -1,5 +1,6 @@
 .content section {
- width: 33%;
+    width: 30%;
+    min-height: 110px;
 }
 
 table {
