@@ -1,0 +1,21 @@
+header .profile {
+    float: right;
+    margin-right: 5%;
+}
+
+.content{
+    margin: 0em 0em;
+    padding:1em;
+}
+
+div.flex {
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+article.flex {
+    margin: 1em 1em;
+    padding:1em;
+    width: 100%;
+}

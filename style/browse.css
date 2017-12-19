@@ -1,0 +1,33 @@
+article.content a, article.content a:hover, article.content a:active, article.content a:visited {
+    color: rgb(255,255,240);
+    text-decoration: none;
+}
+
+article.content p {
+    float: right;
+    width: 79%;
+    overflow: hidden;
+    height: 115px;
+}
+article.content img {
+    width: 20%;
+}
+
+main {
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@media screen and (max-width:1024px) {
+    article.content{
+        margin: 1em 0;
+        width: calc(100% - 20px);
+    }
+}
+@media screen and (min-width:1024px) {
+    article.content{
+        margin: 1em 0;
+        width: 30%;
+    }
+
+}

@@ -1,0 +1,56 @@
+body{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.welcomeWallpaper{
+    background-image: url('../img/wallpaper.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    box-sizing: border-box;
+    animation: backgroundAnimation infinite 30s ease-in-out;
+    background-color: black;
+    margin: 0;
+    height: 100%;
+    box-shadow: 0 0 transparent;
+    
+}
+
+.welcomeHeader{
+    font-size: 3em;
+    
+}
+.welcomeHeaderContainer{
+    width: auto;
+    position: relative;
+    top: 40%;
+}
+
+@keyframes backgroundAnimation{
+    0%{
+        background-position-x: -50px;
+        background-position-y: 0px;
+    }
+    20%{
+        background-position-x: 0px;
+        background-position-y: -50px;
+    }
+    40%{
+        background-position-x: -50px;
+        background-position-y: -50px;
+    }
+    60%{
+        background-position-x: -50px;
+        background-position-y: 0px;
+    }
+    80%{
+        background-position-x: 0px;
+        background-position-y: 0px;
+    }
+    100%{
+        background-position-x: -50px;
+        background-position-y: 0px;
+    }
+}

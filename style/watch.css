@@ -1,0 +1,17 @@
+/* Used to make the header invisible while watching*/
+header{
+    transition: all 0.3s;
+    opacity: 0;
+    z-index: 1;
+}
+header:hover{
+    opacity: 1;
+}
+
+.movie_container{
+    margin-top: 0 !important; /* Reset the top margin*/
+}
+.movie_container > video{
+    height: 100%;
+    width: 100%;
+}
