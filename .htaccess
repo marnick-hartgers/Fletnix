@@ -6,7 +6,7 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
-RewriteRule ^(.*)\.(png|jpg|gif|jpeg|css|js)$ - [L,NC]
+RewriteRule ^(.*)\.(png|jpg|gif|jpeg|css|js|ttf)$ - [L,NC]
 
 RewriteRule ^(.*)$ index.php [QSA]
 

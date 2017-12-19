@@ -1,23 +1,50 @@
 <?php
 
-
 $cssFiles = ["/style/browse.css",];
+
+function getMovies() :array {
+    // get from the database
+
+    return [];
+}
+
+function buildMovie($movieData) : string {
+    $url = "/movie/detail/".str_ireplace(" ","_",$movieData['name']);
+
+    return
+        "<article class='content movie'>
+            <a href='{$url}'>
+                <h2>".ucfirst($movieData['name'])."</h2>
+                <p>{$movieData['decription']}</p>
+                <img src='{$movieData['poster']}' alt='{$movieData['name']} poster'>
+            </a>
+        </article>";
+}
+
+function buildMovieArticles() {
+    $movies = getMovies();
+    $mainArticle = "";
+    foreach ($movies as $movie) {
+        buildMovie($movie);
+    }
+}
 
 echo
     head($cssFiles).
     pageHeader();
 
 echo  "
-
         <main class='page-content flex'>
-            <article class='content movie'>
-                <a href='terminator.html'>
+        
+        ".buildMovieArticles()."
+            <!--<article class='content movie'>
+                
                     <h2>Terminator</h2>
 
                     <p>A seemingly indestructible humanoid cyborg is sent from 2029 to 1984 to assassinate a waitress,
                         whose unborn son will lead humanity in a war against the machines,
                         while a soldier from that war is sent to protect her at all costs.</p>
-                    <img src='/img/movies/Terminator.jpg' alt='Terminator poster'>
+                    
                 </a>
             </article>
 
@@ -77,7 +104,7 @@ echo  "
                     <img src='/img/movies/Dangal.jpg' alt='Dangal poster'>
                 </a>
             </article>
-
+    -->
 
         </main>
     </body>

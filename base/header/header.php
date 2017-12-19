@@ -22,6 +22,7 @@ function pageHeader(){
     return $header;
 }
 
+
 function getHtmlUsername() {
     if (isset($_SESSION['username'])) {
         return "<span class='profile'>{$_SESSION['username']}</span>";
