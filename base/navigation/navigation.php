@@ -3,21 +3,21 @@ function getNavigationTree(){
     $navigationItems = [
         [
             "title"=>"Home",
-            "href"=>"index.php",
+            "href"=>"/",
             "subitems"=>[]
         ],
         [
             "title"=>"Movies",
-            "href"=>"index.php/movies",
+            "href"=>"/movies",
             "subitems"=>[
                 [
                     "title"=>"Actie",
-                    "href"=>"index.php/movies/actie",
+                    "href"=>"/movies/actie",
                     "subitems"=>[]
                 ],
                 [
                     "title"=>"Sci-fi",
-                    "href"=>"index.php/movies/actie",
+                    "href"=>"/movies/actie",
                     "subitems"=>[]
                 ]
             ]

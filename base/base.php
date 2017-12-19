@@ -5,7 +5,7 @@
  *
  * @return void
  */
-function redirectToPage() : void {
+function redirectToPage() {
 
     $page = getUrlRoute(0);
     if ($page != "") {

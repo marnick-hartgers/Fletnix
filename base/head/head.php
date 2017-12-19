@@ -12,7 +12,6 @@ function head($cssFiles = [])
         <link rel="stylesheet" href="./style/shared.css">        
         <link rel="stylesheet" media="screen and (max-width:1024px)" href="./style/style_small.css">
         <link rel="stylesheet" media="screen and (min-width:1024px)" href="./style/style_normal.css">
-        <link rel="stylesheet" href="./style/index.css">
 ';
     foreach($cssFiles as $css){
         $head = $head . "<link rel='stylesheet' href='$css'>";

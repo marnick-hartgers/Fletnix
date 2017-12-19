@@ -1,3 +1,8 @@
 <?php
+$cssFiles = ["./style/login.css"];
 
-echo head();
+echo
+    head($cssFiles).
+    pageHeader()
+;
+

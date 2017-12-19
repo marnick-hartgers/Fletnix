@@ -1,4 +1,4 @@
 <?php
 
 echo head();
-echo pageheader();
+echo pageHeader();
