@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang='nl'>
-    <head>
-        <title>NetNix</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-        <link rel='shortcut icon' href='./img/favicon.ico'>
-        <link rel='stylesheet' href='./style/shared.css'>
-        <link rel='stylesheet' href='./style/watch.css'>
-        <link rel='stylesheet' media='screen and (max-width:1024px)' href='./style/style_small.css'>
-        <link rel='stylesheet' media='screen and (min-width:1024px)' href='./style/style_normal.css'>
-    </head>
+<?php
+$cssFiles = ["./style/shared.css",
+    "./style/style_small.css",
+    "./style/style_normal.css",
+    "./style/watch.css",];
+
+echo head($cssFiles);
+
+echo "
     <body>
         <input type='checkbox' id='header_toggle_button'>
         <header>
@@ -69,3 +67,4 @@
         </main>
     </body>
 </html>
+";

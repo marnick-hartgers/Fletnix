@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang='nl'>
-    <head>
-        <title>NetNix Profile</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-        <link rel='stylesheet' href='./style/shared.css'>
-        <link rel='stylesheet' media='screen and (max-width:1024px)' href='./style/style_small.css'>
-        <link rel='stylesheet' media='screen and (min-width:1024px)' href='./style/style_normal.css'>
-        <link rel='stylesheet' href='./style/profile.css'>
-    </head>
+<?php
+
+$cssFiles = ["./style/shared.css",
+    "./style/style_small.css",
+    "./style/style_normal.css",
+    "./style/profile.css",];
+
+echo head($cssFiles);
+echo  "
     <body>
         <input type='checkbox' id='header_toggle_button'>
         <header>
@@ -74,12 +73,12 @@
                     <section class='subscription_block background-color1'>
                         <h2>PreNix</h2>
                         <p>Dit is het prepaid pakket van NetNix. Voor het kijken van een film word er een credit verrekend.
-                            Op elk moment is het mogelijk om credits te kopen(&euro; 1,- voor 10 credits)</p>
+Op elk moment is het mogelijk om credits te kopen(&euro; 1,- voor 10 credits)</p>
                     </section>
                     <section class='subscription_block background-color1'>
                         <h2>PostNix</h2>
                         <p>Dit is het postpaid pakket van NetNix. Elke film die wordt bekeken word aan het eind van de maand verrekend.
-                            (&euro; 0,20 per film).
+(&euro; 0,20 per film).
                             </p>
                     </section>
                 </div>
@@ -126,4 +125,4 @@
             </div>
         </main>
     </body>
-</html>
+</html>";

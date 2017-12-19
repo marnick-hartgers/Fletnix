@@ -1,6 +1,11 @@
 <?php
 
-function redirectToPage() {
+/**
+ * This function loads the correct page
+ *
+ * @return void
+ */
+function redirectToPage() : void {
 
     $page = getUrlRoute(0);
     if ($page != "") {
@@ -16,8 +21,9 @@ function redirectToPage() {
 }
 
 /**
- * This function
-
+ * This function parses the url and returns an array with url `folders`, the specified index or null if the
+ * specified index does not exist
+ *
  * @param int|null $index
  * @return array|string|false
  */
