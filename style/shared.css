@@ -1,0 +1,202 @@
+/*Default style van Marnick Hartgers*/
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Roboto', 'Open Sans', serif;
+    color: rgb(255, 255, 240);
+}
+
+body {
+    background-color: rgb(25, 25, 25); /*color 2*/
+    overflow: auto;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: rgb(255, 255, 240);
+}
+
+a:visited {
+    color: rgb(255, 255, 240);
+}
+
+a:hover {
+    color: rgb(180, 180, 170);
+}
+
+a:active {
+    color: rgb(255, 255, 255);
+}
+
+/* header */
+header {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    height: 6em;
+    box-shadow: 0 0.2em 0.2em rgb(60, 60, 60);
+    background-color: rgb(60, 60, 60); /*color 3*/
+    transition: height 0.3s;
+    overflow: hidden;
+}
+
+#header_toggle_button[type=checkbox]:checked + header {
+    height: 17em;
+    overflow: visible;
+}
+
+#header_toggle_button[type=checkbox]:checked + header .header_index {
+    opacity: 1;
+}
+
+h1.header_title {
+    margin: 0;
+    padding-left: 1em;
+    padding-top: 0.90em;
+}
+
+h1.header_title > span {
+    vertical-align: top;
+}
+
+.header_index {
+    position: absolute;
+    top: 6em;
+    left: 6.5em;
+    right: 6.5em;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.header_index > ul {
+    list-style: none;
+}
+
+.header_index li {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 100px;
+    height: 20px;
+    position: relative;
+}
+
+.header_index > ul > li > ul {
+    list-style: none;
+    display: block;
+    position: absolute;
+    left: 0%;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.header_index > ul > li:hover > ul {
+    left: 100%;
+    opacity: 1;
+    pointer-events: all;
+    background: rgb(80, 80, 80);
+}
+
+label.header_toggle_button_label {
+    margin-right: 1em;
+}
+
+label.header_toggle_button_label > img {
+    width: 1.1em;
+    height: 1.1em;
+}
+
+#header_toggle_button {
+    position: fixed;
+    left: -10em;
+}
+
+/* end header*/
+
+/* content*/
+main.page-content {
+    margin-top: 120px;
+    height: calc(100% - 120px);
+    overflow: auto;
+}
+
+.content {
+    background-color: rgb(40, 40, 40);
+    box-shadow: 0.2em 0.2em 0.2em rgb(40, 40, 40);
+    border-radius: 0.3em;
+}
+
+div.content_flexbox {
+    display: flex;
+}
+
+article.flexbox_content {
+    background-color: rgb(80, 80, 80);
+    box-shadow: 0.2em 0.2em 0.2em rgb(100, 100, 100);
+    border-radius: 0.3em;
+}
+
+section.sub-content {
+    border-left: solid white 1px;
+}
+
+.link_button {
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.1em;
+    border-radius: 4px;
+    background: rgb(130, 130, 130);
+}
+
+.link_button:hover {
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.1em;
+    border-radius: 4px;
+    color: rgb(255, 255, 240);
+    background: rgb(100, 100, 100);
+}
+
+.background-color1 {
+    background-color: rgb(80, 80, 80);
+}
+
+.background-color2 {
+    background-color: rgb(25, 25, 25);
+}
+
+.background-color3 {
+    background-color: rgb(60, 60, 60);
+}
+
+.color1 {
+    background-color: rgb(130, 130, 130);
+}
+
+.color2 {
+    background-color: rgb(190, 40, 40);
+}
+
+/* end content */

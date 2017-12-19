@@ -1,0 +1,17 @@
+.about .flexbox_content {
+    min-width: 200px;
+    max-width: 45%;
+}
+
+.about .flexbox_content p {
+    margin-bottom: 10px;
+}
+
+.about .flexbox_content img {
+    float: right;
+    width: 45%;
+}
+
+.strike {
+    text-line-through: single;
+}

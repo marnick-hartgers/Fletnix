@@ -1,7 +1,7 @@
 <?php
-function head()
+function head($cssFiles = [])
 {
-    return '
+    $head = '
 <!DOCTYPE html>
 <html lang="nl">
     <head>
@@ -13,6 +13,10 @@ function head()
         <link rel="stylesheet" media="screen and (max-width:1024px)" href="./style/style_small.css">
         <link rel="stylesheet" media="screen and (min-width:1024px)" href="./style/style_normal.css">
         <link rel="stylesheet" href="./style/index.css">
-    </head>
 ';
+    foreach($cssFiles as $css){
+        $head = $head . "<link rel='stylesheet' href='$css'>";
+    }
+    $head  = $head. '</head>';
+    return $head;
 }

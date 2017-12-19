@@ -1,0 +1,27 @@
+.content section {
+    width: 30%;
+    min-height: 110px;
+}
+
+table {
+    width: 80%;
+}
+td:nth-of-type(odd) {
+    width: 20%;
+    text-indent: 10px;
+}
+
+td:nth-of-type(even) {
+    width: 30%;
+}
+
+tr:last-of-type td {
+    text-align: left;
+    text-indent: 10px;
+}
+
+.subscription_block{
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+}
