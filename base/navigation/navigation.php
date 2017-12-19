@@ -33,7 +33,7 @@ function pageNavigation(){
     foreach($navigationItems as $item){
         $navString = $navString . buildNavigationItem($item);
     }
-    $navString = $navString . "</ul";
+    $navString = $navString . "</ul>";
     return $navString;
 }
 

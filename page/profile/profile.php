@@ -1,6 +1,6 @@
 <?php
 
-$cssFiles = ["./style/profile.css",];
+$cssFiles = ["/style/profile.css",];
 
 echo
     head($cssFiles).

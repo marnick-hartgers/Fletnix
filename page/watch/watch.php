@@ -1,5 +1,5 @@
 <?php
-$cssFiles = ["./style/watch.css",];
+$cssFiles = ["/style/watch.css",];
 
 echo
     head($cssFiles).

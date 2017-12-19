@@ -1,6 +1,6 @@
 <?php
 
-$cssFiles = ["./style/about.css",];
+$cssFiles = ["/style/about.css",];
 echo
     head($cssFiles).
     pageHeader();
@@ -21,7 +21,7 @@ Ook maak ik foto's in me vrije tijd. Deze zijn online ook terug te vinden onder 
                 <article id='jelmer' class='flexbox_content'>
                     <h2>Jelmer</h2>
                     <div>
-                        <img src='img/about/jelmer.jpg' alt='Afbeelding van Jelmer'>
+                        <img src='/img/about/jelmer.jpg' alt='Afbeelding van Jelmer'>
                         <p>
                             Mijn naam is Jelmer. Ik ben een Applicatieontwikkelende dierhouder volgens mijn diploma's . Niet dat ik
                             veel meer met dieren wil doen dan enkel als huisdier houden . Als ik voorbeelddata moet makken doe ik

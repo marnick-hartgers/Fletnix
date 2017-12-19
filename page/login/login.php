@@ -1,5 +1,5 @@
 <?php
-$cssFiles = ["./style/login.css"];
+$cssFiles = ["/style/login.css"];
 
 echo
     head($cssFiles).
