@@ -1,3 +1,95 @@
 <?php
 
-echo head();
+$cssFiles = ["./style/shared.css",
+    "./style/style_small.css",
+    "./style/style_normal.css",
+    "./style/about.css",];
+
+echo head($cssFiles);
+
+echo "
+    <body >
+        <input type = 'checkbox' id = 'header_toggle_button' >
+        <header >
+        <span class='profile' > Barry Boterham </span >
+            <h1 class='header_title' >
+                <label for='header_toggle_button' class='header_toggle_button_label' >
+                    <img src = 'img/buttons/menu.png' alt = 'Menu' />
+                </label >
+                <span > About Us </span >
+            </h1 >
+            <nav class='header_index' >
+                <ul >
+                    <li >
+                        <a href = 'index.html' > Home</a >
+                    </li >
+                    <li >
+                        <a href = 'browse.html?genre=all' > Browse</a >
+                        <ul >
+                            <li >
+                                <a href = 'browse.html?genre=all' > Alles</a >
+                            </li >
+                            <li >
+                                <a href = 'browse.html?genre=Actie' > Actie</a >
+                            </li >
+                            <li >
+                                <a href = 'browse.html?genre=Horror' > Horror</a >
+                            </li >
+                            <li >
+                                <a href = 'browse.html?genre=scifi' > Sci - fi</a >
+                            </li >
+                            <li >
+                                <a href = 'browse.html?genre=Familie' > Familie</a >
+                            </li >
+                        </ul >
+                    </li >
+                    <li >
+                        <a href = 'about.html' > Over ons </a >
+                        <ul >
+                            <li >
+                                <a href = 'about.html#marnick' > Marnick</a >
+                            </li >
+                            <li >
+                                <a href = 'about.html#jelmer' > Jelmer</a >
+                            </li >
+                        </ul >
+                    </li >
+                    <li >
+                        <a href = 'profile.html' > Abonnement</a >
+                    </li >
+                </ul >
+            </nav >
+        </header >
+        <main class='page-content about flex' >
+            <div class='content_flexbox' >
+                <article id = 'marnick' class='flexbox_content' >
+                    <h2 > Marnick</h2 >
+                    <p > Mijn naam is Marnick . Ik ben één van de ontwikkelaars van deze site . In mijn vrije tijd maak ik ook software maar dan voor me eigen projecten .
+Ook maak ik foto's in me vrije tijd. Deze zijn online ook terug te vinden onder de naam &quot;photos_by_marnick&quot;
+                        <br />
+                        <br />
+                        Samen met Jelmer hebben we deze site gebouwd voor een opdracht van school. Het is een best leuke opdracht ik vind het een goed begin om HTML te leren aan beginnende studenten. 
+                    </p>
+                </article>
+                <article id='jelmer' class='flexbox_content'>
+                    <h2>Jelmer</h2>
+                    <div>
+                        <img src='img/about/jelmer.jpg' alt='Afbeelding van Jelmer'>
+                        <p>
+                            Mijn naam is Jelmer. Ik ben een Applicatieontwikkelende dierhouder volgens mijn diploma's . Niet dat ik
+                            veel meer met dieren wil doen dan enkel als huisdier houden . Als ik voorbeelddata moet makken doe ik
+                            dat veel liever door de lorem ipsum generator te gebruiken die in PhpStorm ingebouwd zit . Die geeft
+                            namelijk genoeg tekst om iets mee te kunnen, zoals in de volgende alinia wel te zien is
+</p >
+                        <p ><s >
+Lorem ipsum dolor sit amet, consectetur adipisicing elit . Animi, cupiditate deserunt dicta, dolorem
+                            eligendi enim error impedit obcaecati, odit optio quasi voluptate ? In, nemo, ut . Hic incidunt sequi
+                            sit voluptate ?</s >
+                        </p >
+                        <p > Oeps . Dat is ook zo, volgens de opdracht mocht je er geen lorem ispum in gebruiken...</p >
+                    </div >
+                </article >
+            </div >
+        </main >
+    </body >
+</html >";

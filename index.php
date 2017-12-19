@@ -1,12 +1,13 @@
 <?php
 
 define("ROOT", dirname(__FILE__).DIRECTORY_SEPARATOR);
+
 /**
  * This function includes every file in a directory and its subdirectories
  *
  * @param $dirToInclude string The directory that is to be included
  */
-function includeDir($dirToInclude)
+function includeDir(string $dirToInclude)
 {
     foreach (scandir($dirToInclude) as $subDir) {
         if ($subDir == "." || $subDir == "..") {
@@ -21,6 +22,7 @@ function includeDir($dirToInclude)
         }
     }
 }
+
 includeDir(ROOT . "base");
 
 redirectToPage();
