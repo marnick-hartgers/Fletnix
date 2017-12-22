@@ -3,9 +3,9 @@
 function pageHeader(){
     $header = "
     <input type='checkbox' id='header_toggle_button'>
-    <header>
-        ".getHtmlUsername()."
-        <div class=''>                
+    <header>        
+        <div class='user'>  
+        ".getHtmlUsername()."              
         </div>
         <h1 class='header_title'>
             <label for='header_toggle_button' class='header_toggle_button_label'>
@@ -25,7 +25,11 @@ function pageHeader(){
 
 function getHtmlUsername() {
     if (isset($_SESSION['username'])) {
-        return "<span class='profile'>{$_SESSION['username']}</span>";
+        return "
+        <a href='/profile'>{$_SESSION['username']}</a>
+        <br />
+        <a href='/logout'>Logout</a>
+        ";
     }
     return "<span class='profile'><a href='/login'>Log in</a></span>";
 }
