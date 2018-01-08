@@ -58,6 +58,7 @@ header {
     overflow: hidden;
 }
 
+
 #header_toggle_button[type=checkbox]:checked + header {
     height: 17em;
     overflow: visible;
@@ -133,6 +134,7 @@ label.header_toggle_button_label > img {
     left: -10em;
 }
 
+
 /* end header*/
 
 /* content*/
@@ -178,6 +180,44 @@ section.sub-content {
     color: rgb(255, 255, 240);
     background: rgb(100, 100, 100);
 }
+
+.text_input{
+    position: relative;
+    height: 50px;
+    width:250px;
+}
+.text_input > label{
+    position: absolute;
+    left: 5px;
+    right: 0;
+    top:25px;
+    transition: all 0.3s;
+}
+.text_input > input:focus + label{
+    left: 0px;
+    top: 0px;
+}
+.text_input > input:valid + label{
+    left: 0px;
+    top: 0px;
+}
+.text_input > input{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:20px;
+    bottom: 0;
+    background: rgb(100,100,100);
+    border: none;
+    border-radius: 5px;
+    padding:5px;
+    color:white;
+    outline: 0;
+}
+.text_input > input:focus{
+    background: rgb(130,130,130);
+}
+
 
 .background-color1 {
     background-color: rgb(80, 80, 80);

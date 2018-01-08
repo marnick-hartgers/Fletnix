@@ -8,6 +8,7 @@ echo
 ;
 
 echo "
+    <body>
         <main class='page-content'>
             
             <article class='content welcomeWallpaper'>
