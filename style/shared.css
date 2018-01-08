@@ -200,3 +200,14 @@ section.sub-content {
 }
 
 /* end content */
+
+font {
+    display: flex;
+}
+.xdebug-error{
+    z-index: 1;
+}
+
+.xdebug-error *{
+    color: initial;
+}

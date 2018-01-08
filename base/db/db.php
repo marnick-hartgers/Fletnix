@@ -2,12 +2,21 @@
 
 require_once ("dbDefines.php");
 
-$pdo = connect();
-
 /**
  * This function is supposed to connect to the database
  */
-function connect() {
+
+function getPdo() : PDO {
+    global $pdo;
+    if (is_a($pdo, "PDO")) {
+        return $pdo;
+    }
+    $pdo = connect();
+    return $pdo;
+}
+
+function connect() : PDO{
+
     try {
         $pdo = new PDO("sqlsrv:Server=".DB_HOST.";Database=Fletnix;ConnectionPooling=0", DB_USER, DB_PASS);
     }

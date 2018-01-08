@@ -7,25 +7,21 @@
  */
 function getMovieNavigation(): array
 {
+
     // get the genres from the database
-    $genres = [
-        "Sci-fi",
-        "Actie",
-        "Horror",
-        "Familie",
-    ];
+    $genres = getGenres();
 
     $return = [
         [
             "title" => "Alles",
-            "href" => "/movie",
+            "href" => "/browse",
             "subitems" => [],
         ],
     ];
     foreach ($genres as $genre) {
         $return[] = [
             "title" => $genre,
-            "href" => "/movie/" . $genre,
+            "href" => "/browse/" . $genre,
             "subitems" => [],
         ];
     }
@@ -43,8 +39,8 @@ function getNavigationTree(): array
             "subitems" => []
         ],
         [
-            "title" => "Movies",
-            "href" => "/movie",
+            "title" => "Browse",
+            "href" => "/browse",
             "subitems" => getMovieNavigation()
         ],
         [
