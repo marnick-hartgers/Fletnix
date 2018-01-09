@@ -1,6 +1,14 @@
 <?php
 
-function pageHeader(){
+function pageHeader(bool $backButtonLink = false){
+    $headerBackButton = "";
+    if($backButtonLink){
+        $headerBackButton = "
+        <a class='header_toggle_button_label' href='javascript:history.back()'>
+            <img src='/img/buttons/back.png' alt='Back'/>
+        </a>
+        ";
+    }
     $header = "
     <input type='checkbox' id='header_toggle_button'>
     <header>        
@@ -11,6 +19,7 @@ function pageHeader(){
             <label for='header_toggle_button' class='header_toggle_button_label'>
                 <img src='/img/buttons/menu.png' alt='Menu'/>
             </label>
+            $headerBackButton
             <a href='/'>NetNix</a>
         </h1>
         <nav class='header_index'>";
