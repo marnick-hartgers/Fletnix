@@ -1,18 +1,29 @@
 <?php
 $cssFiles = ["/style/watch.css",];
 
+function generateMovieDetails(){
+    $movieId = (int)getUrlRoute(1);
+    $movieDetails = getMovieDetails($movieId);
+    return buildVideoFrame($movieDetails);
+}
+
+function buildVideoFrame($movieDetails){
+    $url = "https://www.youtube.com/embed/" . $movieDetails["URL"] . "?autoplay=1";
+    return "
+        <iframe src='$url' />
+    ";
+}
+
+
 echo
-    head($cssFiles).
-    pageHeader();
+head($cssFiles).
+pageHeader();
 
 echo  "
-
-        <main class='page-content movie_container'>
-            
-            <video controls autoplay>
-                <source src='content/mov1.mov' />
-            </video>
-        </main>
-    </body>
-</html>
-";
+    <main class='flex'>
+        <div class='movie_container'>
+            ".generateMovieDetails()."
+        </div>
+    </main>
+</body>
+</html>";

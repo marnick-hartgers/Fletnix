@@ -8,7 +8,7 @@ function getGenres() : array {
 function getMovies(string $genre = "", int $page = 1) : array {
     $pdo = getPdo();
 
-    $query = "SELECT title, Movie.description as description, ROW_NUMBER() OVER(ORDER BY movie_id ASC) AS Row# FROM Movie";
+    $query = "SELECT Movie.movie_id, title, Movie.description as description, cover_image, ROW_NUMBER() OVER(ORDER BY Movie.movie_id ASC) AS Row# FROM Movie";
     $param = [];
     if ($genre != "") {
         $query.= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
@@ -45,4 +45,15 @@ function getMovieCount(string $genre = "") {
     $statement->execute($param);
 
     return $statement->fetch(PDO::FETCH_COLUMN, "movies")[0];
+}
+function getMovieDetails(int $movieId){
+    $pdo = getPdo();
+
+    $query = "SELECT * FROM Movie WHERE Movie.movie_id = :movieId";
+    $param = [];
+    $param[":movieId"] = $movieId;
+    $statement = $pdo->prepare($query);
+    $statement->execute($param);
+
+    return $statement->fetch(PDO::FETCH_ASSOC);
 }

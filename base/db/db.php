@@ -18,7 +18,7 @@ function getPdo() : PDO {
 function connect() : PDO{
 
     try {
-        $pdo = new PDO("sqlsrv:Server=".DB_HOST.";Database=Fletnix;ConnectionPooling=0", DB_USER, DB_PASS);
+        $pdo = new PDO("sqlsrv:Server=".DB_HOST.";Database=". DB_DBNAME .";ConnectionPooling=0", DB_USER, DB_PASS);
     }
     catch (PDOException $e) {
         var_dump($e, $e->getMessage());

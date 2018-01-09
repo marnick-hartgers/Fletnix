@@ -3,16 +3,17 @@
 $cssFiles = ["/style/browse.css",];
 
 function buildMovie($movieData) : string {
-    $url = "/movie/detail/".str_ireplace(" ","_",$movieData['title']);
+    $url = "/detail/".$movieData['movie_id'];
     if (isset($movieData['poster']) == false) {
         $movieData['poster'] = "";
     }
+    $imgSource = "/img/movies/" . $movieData['cover_image'];
     return
         "<article class='content movie'>
             <a href='{$url}'>
                 <h2>".ucfirst($movieData['title'])."</h2>
                 <p>{$movieData['description']}</p>
-                <img src='{$movieData['poster']}' alt='{$movieData['title']} poster'>
+                <img src='$imgSource' alt='{$movieData['title']} poster'>
             </a>
         </article>";
 }
