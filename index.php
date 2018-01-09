@@ -3,6 +3,8 @@ session_start();
 
 define("ROOT", dirname(__FILE__).DIRECTORY_SEPARATOR);
 
+date_default_timezone_set("Europe/Amsterdam");
+
 /**
  * This function includes every file in a directory and its subdirectories
  *

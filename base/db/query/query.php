@@ -46,6 +46,7 @@ function getMovieCount(string $genre = "") {
 
     return $statement->fetch(PDO::FETCH_COLUMN, "movies")[0];
 }
+
 function getMovieDetails(int $movieId){
     $pdo = getPdo();
 
@@ -56,4 +57,52 @@ function getMovieDetails(int $movieId){
     $statement->execute($param);
 
     return $statement->fetch(PDO::FETCH_ASSOC);
+
+}
+
+function validateUser(string $username, string $password) {
+    $pdo = getPdo();
+
+    $query = "
+        SELECT COUNT(*) 
+        FROM Customer 
+        WHERE user_name = :username AND password = :password
+    ";
+    $param = [
+        ":username" => $username,
+        ":password" => $password
+    ];
+
+    $statement = $pdo->prepare($query);
+    $statement->execute($param);
+
+    return $statement->fetch()[0] == 1;
+}
+
+/**
+ * This function returns the following fields of the specified user:
+ *  - user_name as username
+ *  - contract_type
+ *  - subscription_end
+ *  - country_name
+ *  - birth_date
+ *  - gender
+ *
+ * @param string $username The username to retrieve the data of
+ * @return array
+ */
+function getUserData(string $username = "") : array {
+    $pdo = getPdo();
+
+    $query = "
+        SELECT user_name as username, contract_type, subscription_end, country_name, birth_date, gender
+        FROM Customer
+        WHERE user_name = :username
+    ";
+    $param = [":username" => $username];
+    $statement = $pdo->prepare($query);
+    $statement->execute($param);
+
+    return $statement->errorCode() == "00000" ? $statement->fetch(PDO::FETCH_ASSOC) : [];
+
 }

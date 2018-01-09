@@ -33,7 +33,14 @@ function handlePostParameters(){
     }
     $username = $_POST["username"];
     $password = $_POST["password"];
-    if($username != "" && $password == "geheim"){
-        $_SESSION["username"] = $username;
+
+    /*
+     * If the password field in Customer would be longer there would be the possibility to use some encrypting of the password
+     * As it is, this is not possible using a 'safe' encryption method
+     */
+    if(validateUser($username, $password)) {
+        $userData = getUserData($username);
+        $_SESSION = array_merge($_SESSION, $userData);
+        $_SESSION['loggedInSince'] = time();
     }
 }
