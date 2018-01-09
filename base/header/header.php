@@ -11,7 +11,7 @@ function pageHeader(){
             <label for='header_toggle_button' class='header_toggle_button_label'>
                 <img src='/img/buttons/menu.png' alt='Menu'/>
             </label>
-            <span>NetNix</span>
+            <a href='/'>NetNix</a>
         </h1>
         <nav class='header_index'>";
 
