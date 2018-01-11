@@ -24,10 +24,10 @@ function pageHeader(){
 
 
 function getHtmlUsername() {
-    if (isset($_SESSION['username'])) {
+    if (validateUserSession()) {
         return "
         ".getCurrentWeekday().date(" d ").getCurrentMonth().date(" Y")."<br />
-        <a href='/profile'>{$_SESSION['username']}</a> logged in since ".date("Y-m-d H:i")."
+        <a href='/profile'>{$_SESSION['username']}</a> logged in since ".date("Y-m-d H:i", $_SESSION['loggedInSince'])."
         <br />
         <a href='/logout'>Logout</a>
         ";

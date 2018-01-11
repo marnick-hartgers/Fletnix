@@ -95,7 +95,7 @@ function getUserData(string $username = "") : array {
     $pdo = getPdo();
 
     $query = "
-        SELECT user_name as username, contract_type, subscription_end, country_name, birth_date, gender
+        SELECT customer_mail_adres as mailAddress, user_name as username, contract_type, subscription_end, country_name, birth_date, gender
         FROM Customer
         WHERE user_name = :username
     ";
@@ -104,5 +104,9 @@ function getUserData(string $username = "") : array {
     $statement->execute($param);
 
     return $statement->errorCode() == "00000" ? $statement->fetch(PDO::FETCH_ASSOC) : [];
+
+}
+
+function searchMovie($searchWord) : array {
 
 }

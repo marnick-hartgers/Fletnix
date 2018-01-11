@@ -27,7 +27,7 @@ function loginForm():string{
     ";
 }
 
-function handlePostParameters(){
+function handlePostParameters() {
     if(!isset($_POST["username"]) || !isset($_POST["password"])){
         return;
     }
