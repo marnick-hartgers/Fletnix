@@ -33,10 +33,16 @@ function connect() : PDO{
  * @param array $parameters An array containing at least the required parameters
  * @return PDOStatement
  */
-function prepareAndExecute(string $query, array $parameters) : PDOStatement{
+function prepareAndExecute(string $query, array $parameters = []) : PDOStatement{
     try {
         $parameters = parametrize($query, $parameters);
-        return getPdo()->prepare($query)->execute($parameters);
+        $statement = getPdo()->prepare($query);
+
+        if ($statement->execute($parameters) == false) {
+            throw new PDOException(getPdo()->errorInfo(), getPdo()->errorCode());
+        } else {
+            return $statement;
+        }
     } catch (PDOException $e) {
         echo $e->getMessage();
         echo "<br />Stopping exectution at db.php:34";

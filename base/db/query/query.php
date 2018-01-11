@@ -1,17 +1,19 @@
 <?php
 
-function getGenres() : array {
+function getGenres(): array
+{
     $pdo = getPdo();
     return $pdo->query("SELECT genre_name FROM Genre;")->fetchAll(PDO::FETCH_COLUMN, "genre_name");
 }
 
-function getMovies(string $genre = "", int $page = 1) : array {
+function getMovies(string $genre = "", int $page = 1): array
+{
     $pdo = getPdo();
 
     $query = "SELECT Movie.movie_id, title, Movie.description as description, cover_image, ROW_NUMBER() OVER(ORDER BY Movie.movie_id ASC) AS Row# FROM Movie";
     $param = [];
     if ($genre != "") {
-        $query.= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
+        $query .= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
                     INNER JOIN Genre on Movie_Genre.genre_name = Genre.genre_name 
                     WHERE Genre.genre_name = :genre
                     ";
@@ -19,9 +21,9 @@ function getMovies(string $genre = "", int $page = 1) : array {
     }
 
     $query = "WITH movies AS ({$query}) SELECT * FROM movies WHERE Row# BETWEEN :lowerLimit and :upperLimit";
-    
-    $param[":lowerLimit"] = (int) (($page-1) * 51) + 1;
-    $param[":upperLimit"] = (int) (($page-1) * 51) + 51;
+
+    $param[":lowerLimit"] = (int)(($page - 1) * 51) + 1;
+    $param[":upperLimit"] = (int)(($page - 1) * 51) + 51;
 
     $statement = $pdo->prepare($query);
     $statement->execute($param);
@@ -29,13 +31,14 @@ function getMovies(string $genre = "", int $page = 1) : array {
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getMovieCount(string $genre = "") {
+function getMovieCount(string $genre = "")
+{
     $pdo = getPdo();
 
     $query = "SELECT COUNT(*) AS movies FROM Movie";
     $param = [];
     if ($genre != "") {
-        $query.= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
+        $query .= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
                     INNER JOIN Genre on Movie_Genre.genre_name = Genre.genre_name 
                     WHERE Genre.genre_name = :genre
                     ";
@@ -47,7 +50,8 @@ function getMovieCount(string $genre = "") {
     return $statement->fetch(PDO::FETCH_COLUMN, "movies")[0];
 }
 
-function getMovieDetails(int $movieId){
+function getMovieDetails(int $movieId)
+{
     $pdo = getPdo();
 
     $query = "SELECT * FROM Movie WHERE Movie.movie_id = :movieId";
@@ -60,7 +64,8 @@ function getMovieDetails(int $movieId){
 
 }
 
-function validateUser(string $username, string $password) {
+function validateUser(string $username, string $password)
+{
     $pdo = getPdo();
 
     $query = "
@@ -91,7 +96,8 @@ function validateUser(string $username, string $password) {
  * @param string $username The username to retrieve the data of
  * @return array
  */
-function getUserData(string $username = "") : array {
+function getUserData(string $username = ""): array
+{
     $pdo = getPdo();
 
     $query = "
@@ -107,6 +113,32 @@ function getUserData(string $username = "") : array {
 
 }
 
-function searchMovie($searchWord) : array {
+function getCountries(): array
+{
+    $query = "SELECT country_name FROM Country";
+    $results = prepareAndExecute($query)->fetchAll(PDO::FETCH_COLUMN, "country_name");
+
+    return count($results) > 0 ? $results : [];
+}
+
+function getPaymentMethods(): array
+{
+    $query = "SELECT payment_method FROM Payment";
+    $results = prepareAndExecute($query)->fetchAll(PDO::FETCH_COLUMN, "payment_method");
+
+    return count($results) > 0 ? $results : [];
+}
+
+function getContracts(): array
+{
+    $query = "SELECT contract_type as contract, price_per_month as price FROM Contract";
+    $results = prepareAndExecute($query)->fetchAll(PDO::FETCH_ASSOC);
+
+    return count($results) > 0 ? $results : [];
+
+}
+
+function searchMovie($searchWord): array
+{
 
 }
