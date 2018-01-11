@@ -17,7 +17,7 @@ function buildVideoFrame($movieDetails){
 
 echo
 head($cssFiles).
-pageHeader();
+pageHeader(true);
 
 echo  "
     <main class='flex'>

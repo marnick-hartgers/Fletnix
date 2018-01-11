@@ -75,8 +75,9 @@ h1.header_title {
     padding-top: 0.90em;
 }
 
-h1.header_title > span {
+h1.header_title > a {
     vertical-align: top;
+    text-decoration: transparent;
 }
 
 .header_index {
@@ -121,11 +122,11 @@ h1.header_title > span {
     background: rgb(80, 80, 80);
 }
 
-label.header_toggle_button_label {
+.header_toggle_button_label {
     margin-right: 1em;
 }
 
-label.header_toggle_button_label > img {
+.header_toggle_button_label > img {
     width: 1.1em;
     height: 1.1em;
 }

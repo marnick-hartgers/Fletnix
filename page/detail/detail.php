@@ -18,26 +18,28 @@ function generateMovieDetails(){
 
 function generateMovieStats($movieDetails){
     $title = $movieDetails["title"];
-    $omschrijving = $movieDetails["description"];
+    $description = $movieDetails["description"];
     $imgSource = "/img/movies/" . $movieDetails["cover_image"];
     
     $imageStyle = 'url("'. $imgSource . '")';
-    $speelLink = "/watch/" . $movieDetails["movie_id"];
+    $playLink = "/watch/" . $movieDetails["movie_id"];
+    $duration = $movieDetails["duration"] . "min";
     return "
         <div class='movie_image'>
             <img src='$imgSource'>
-            <a href='$speelLink'><img src='/img/buttons/play.png'></a>
+            <a href='$playLink'><img src='/img/buttons/play.png'></a>
         </div>
         <article class='movie_desc'>
             <h1>$title</h1>
-            <p>$omschrijving</p>
+            <p>Speeltijd: $duration</p>
+            <p>$description</p>
         </article>
     ";
 }
 
 echo
 head($cssFiles).
-pageHeader();
+pageHeader(true);
 
 echo  "
     <main class='page-content'>    
