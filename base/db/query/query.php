@@ -95,7 +95,7 @@ function getUserData(string $username = "") : array {
     $pdo = getPdo();
 
     $query = "
-        SELECT customer_mail_adres as mailAddress, user_name as username, contract_type, subscription_end, country_name, birth_date, gender
+        SELECT customer_mail_address as mailAddress, user_name as username, contract_type, subscription_end, country_name, birth_date, gender
         FROM Customer
         WHERE user_name = :username
     ";

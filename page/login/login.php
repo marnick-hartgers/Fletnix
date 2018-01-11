@@ -40,6 +40,9 @@ function handlePostParameters() {
      */
     if(validateUser($username, $password)) {
         $userData = getUserData($username);
+        if (is_null($userData['subscription_end'])) {
+            $userData['subscription_end'] = false;
+        }
         $_SESSION = array_merge($_SESSION, $userData);
         $_SESSION['loggedInSince'] = time();
     }
