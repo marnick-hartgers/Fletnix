@@ -16,6 +16,7 @@ function getMovieNavigation(): array
             "title" => "Alles",
             "href" => "/browse",
             "subitems" => [],
+            "requireLogin"=>true
         ],
     ];
     foreach ($genres as $genre) {
@@ -23,6 +24,7 @@ function getMovieNavigation(): array
             "title" => $genre,
             "href" => "/browse/" . $genre,
             "subitems" => [],
+            "requireLogin"=>true
         ];
     }
 
@@ -36,22 +38,26 @@ function getNavigationTree(): array
         [
             "title" => "Home",
             "href" => "/",
-            "subitems" => []
+            "subitems" => [],
+            "requireLogin" => false
         ],
         [
             "title" => "Browse",
             "href" => "/browse",
-            "subitems" => getMovieNavigation()
+            "subitems" => getMovieNavigation(),
+            "requireLogin" => true
         ],
         [
             "title" => "Over ons",
             "href" => "/about",
             "subitems" => [],
+            "requireLogin"=>false
         ],
         [
             "title" => "Abonnement",
             "href" => "/subscription",
             "subitems" => [],
+            "requireLogin"=>false
         ]
     ];
     return $navigationItems;
@@ -71,6 +77,9 @@ function pageNavigation(): string
 
 function buildNavigationItem(array $navItem): string
 {
+    if($navItem["requireLogin"] == true && !validateUserSession()){
+        return "";
+    }
     $title = $navItem["title"];
     $href = $navItem["href"];
     $itemString = "

@@ -12,11 +12,12 @@ function generateMovieDetails(){
         }
         $movieId = (int)$movieIdString;
         $movieDetails = getMovieDetails($movieId);
-        return generateMovieStats($movieDetails);
+        $cast =  getMovieCast($movieId);
+        return generateMovieStats($movieDetails,$cast);
     }    
 }
 
-function generateMovieStats($movieDetails){
+function generateMovieStats($movieDetails,$cast){
     $title = $movieDetails["title"];
     $description = $movieDetails["description"];
     $imgSource = "/img/movies/" . $movieDetails["cover_image"];
@@ -24,6 +25,8 @@ function generateMovieStats($movieDetails){
     $imageStyle = 'url("'. $imgSource . '")';
     $playLink = "/watch/" . $movieDetails["movie_id"];
     $duration = $movieDetails["duration"] . "min";
+    $year = $movieDetails["publication_year"];
+    $movieCast = generateMovieCast($cast);
     return "
         <div class='movie_image'>
             <img src='$imgSource'>
@@ -31,10 +34,30 @@ function generateMovieStats($movieDetails){
         </div>
         <article class='movie_desc'>
             <h1>$title</h1>
+            <p>Year:$year</p>
             <p>Speeltijd: $duration</p>
             <p>$description</p>
+            <h2>Cast</h2>
+            $movieCast
         </article>
     ";
+}
+
+function generateMovieCast($cast){
+    $castStr = "<div class='movie_cast'>";
+    foreach($cast as $person){
+        //role, lastname, firstname, gender
+        $name = $person["firstname"] . " " . $person["lastname"];
+        $role = $person["role"];
+        $castStr .= "
+        <div>
+            <h3>$name</h3>
+            <p>$role</p>
+        </div>
+        ";
+    }
+    $castStr .= "</div>";
+    return $castStr;
 }
 
 echo
