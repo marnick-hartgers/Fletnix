@@ -1,4 +1,7 @@
 <?php
+if (validateUserSession()) {
+    header("Location: /");
+}
 handlePostParameters();
 $cssFiles = ["/style/login.css"];
 echo
