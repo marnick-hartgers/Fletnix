@@ -41,8 +41,9 @@ function handlePostParameters() {
      * If the password field in Customer would be longer there would be the possibility to use some encrypting of the password
      * As it is, this is not possible using a 'safe' encryption method
      */
-    if(validateUser($username, $password)) {
-        $userData = getUserData($username);
+    $usersEmail = validateUser($username, $password);
+    if($usersEmail != false) {
+        $userData = getUserData($usersEmail);
         if (is_null($userData['subscription_end'])) {
             $userData['subscription_end'] = false;
         }

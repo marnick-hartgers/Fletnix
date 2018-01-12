@@ -27,5 +27,6 @@ function includeDir(string $dirToInclude)
 }
 
 includeDir(ROOT . "base");
+require_once "databaseConversion.php";
 
 redirectToPage();

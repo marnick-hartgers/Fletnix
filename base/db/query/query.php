@@ -8,46 +8,35 @@ function getGenres(): array
 
 function getMovies(string $genre = "", int $page = 1): array
 {
-    $pdo = getPdo();
-
     $query = "SELECT Movie.movie_id, title, Movie.description as description, cover_image, ROW_NUMBER() OVER(ORDER BY Movie.movie_id ASC) AS Row# FROM Movie";
-    $param = [];
+    $param = [
+        "genre" => $genre,
+        "lowerLimit" => (int)(($page - 1) * 51) + 1,
+        "upperLimit" => (int)(($page - 1) * 51) + 51,
+    ];
     if ($genre != "") {
         $query .= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
                     INNER JOIN Genre on Movie_Genre.genre_name = Genre.genre_name 
                     WHERE Genre.genre_name = :genre
                     ";
-        $param[":genre"] = $genre;
     }
 
     $query = "WITH movies AS ({$query}) SELECT * FROM movies WHERE Row# BETWEEN :lowerLimit and :upperLimit";
 
-    $param[":lowerLimit"] = (int)(($page - 1) * 51) + 1;
-    $param[":upperLimit"] = (int)(($page - 1) * 51) + 51;
-
-    $statement = $pdo->prepare($query);
-    $statement->execute($param);
-
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
+    return prepareAndExecute($query, $param)->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getMovieCount(string $genre = "")
 {
-    $pdo = getPdo();
-
     $query = "SELECT COUNT(*) AS movies FROM Movie";
-    $param = [];
     if ($genre != "") {
         $query .= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
                     INNER JOIN Genre on Movie_Genre.genre_name = Genre.genre_name 
                     WHERE Genre.genre_name = :genre
                     ";
-        $param[":genre"] = $genre;
     }
-    $statement = $pdo->prepare($query);
-    $statement->execute($param);
 
-    return $statement->fetch(PDO::FETCH_COLUMN, "movies")[0];
+    return prepareAndExecute($query, ["genre" => $genre])->fetch(PDO::FETCH_COLUMN, "movies")[0];
 }
 
 function getMovieDetails(int $movieId)
@@ -66,22 +55,22 @@ function getMovieDetails(int $movieId)
 
 function validateUser(string $username, string $password)
 {
-    $pdo = getPdo();
-
     $query = "
-        SELECT COUNT(*) 
+        SELECT password, customer_mail_address as email
         FROM Customer 
-        WHERE user_name = :username AND password = :password
+        WHERE user_name = :username
     ";
     $param = [
-        ":username" => $username,
-        ":password" => $password
+        "username" => $username,
     ];
 
-    $statement = $pdo->prepare($query);
-    $statement->execute($param);
-
-    return $statement->fetch()[0] == 1;
+    $results = prepareAndExecute($query, $param)->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($results as $result) {
+        if (password_verify($password, $result['password'])) {
+            return $result['email'];
+        }
+    }
+    return false;
 }
 
 /**
@@ -93,21 +82,17 @@ function validateUser(string $username, string $password)
  *  - birth_date
  *  - gender
  *
- * @param string $username The username to retrieve the data of
+ * @param string $userEmail The users email address to retrieve the data of
  * @return array
  */
-function getUserData(string $username = ""): array
+function getUserData(string $userEmail = ""): array
 {
-    $pdo = getPdo();
-
     $query = "
         SELECT customer_mail_address as mailAddress, user_name as username, contract_type, subscription_end, country_name, birth_date, gender
         FROM Customer
-        WHERE user_name = :username
+        WHERE customer_mail_address = :userEmail
     ";
-    $param = [":username" => $username];
-    $statement = $pdo->prepare($query);
-    $statement->execute($param);
+    $statement = prepareAndExecute($query, ["userEmail" => $userEmail]);
 
     return $statement->errorCode() == "00000" ? $statement->fetch(PDO::FETCH_ASSOC) : [];
 

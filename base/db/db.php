@@ -38,8 +38,11 @@ function prepareAndExecute(string $query, array $parameters = []) : PDOStatement
         $parameters = parametrize($query, $parameters);
         $statement = getPdo()->prepare($query);
 
-        if ($statement->execute($parameters) == false) {
-            throw new PDOException(getPdo()->errorInfo(), getPdo()->errorCode());
+        if (is_a($statement, "PDOStatement") === false) {
+            throw new PDOException(getPdo()->errorInfo()[2], getPdo()->errorInfo()[1]);
+        }
+        elseif ($statement->execute($parameters) == false) {
+            throw new PDOException($statement->errorInfo()[2], $statement->errorInfo()[1]);
         } else {
             return $statement;
         }
