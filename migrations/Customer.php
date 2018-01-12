@@ -1,7 +1,4 @@
 <?php
-$migrateFunctions = [
-  "convertCustomerPasswords",
-];
 
 function convertCustomerPasswords() {
     $pdo = getPdo();
@@ -23,28 +20,4 @@ function convertCustomerPassword($password, $user) {
         "UPDATE Customer SET password = :password WHERE customer_mail_address = :user",
         ["user" => $user, "password"=>$hashed]
     );
-}
-
-
-
-function checkIfNeeded() {
-    global $migrateFunctions;
-    $queryResult = getPdo()->query(
-        "SELECT CHARACTER_MAXIMUM_LENGTH as length 
-        FROM INFORMATION_SCHEMA.COLUMNS 
-        WHERE TABLE_NAME = 'Customer' AND COLUMN_NAME = 'password'")->fetch(PDO::FETCH_ASSOC);
-    if ($queryResult['length'] > 50) {
-        return;
-    }
-
-    foreach ($migrateFunctions as $function) {
-        $function();
-    }
-}
-try {
-    checkIfNeeded();
-}
-catch (Exception $e) {
-    ob_clean();
-    var_dump($e);die;
 }

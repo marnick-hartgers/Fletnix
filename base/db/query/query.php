@@ -8,7 +8,14 @@ function getGenres(): array
 
 function getMovies(string $genre = "", int $page = 1): array
 {
-    $query = "SELECT Movie.movie_id, title, Movie.description as description, cover_image, ROW_NUMBER() OVER(ORDER BY Movie.publication_year DESC) AS Row# FROM Movie";
+    $query = "
+        SELECT Movie.movie_id, 
+            title,
+            Movie.description as description, 
+            cover_image, 
+            ROW_NUMBER() OVER(ORDER BY Movie.publication_year DESC) AS Row#,
+            (SELECT count(*) FROM Watchhistory INNER JOIN Movie m ON m.movie_id = Watchhistory.movie_id) AS times_watched 
+        FROM Movie";
     $param = [
         "genre" => $genre,
         "lowerLimit" => (int)(($page - 1) * 51) + 1,
@@ -17,12 +24,11 @@ function getMovies(string $genre = "", int $page = 1): array
     if ($genre != "") {
         $query .= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
                     INNER JOIN Genre on Movie_Genre.genre_name = Genre.genre_name 
-                    WHERE Genre.genre_name = :genre
-                    ";
+                    WHERE Genre.genre_name = :genre "; // Space is important here
     }
 
-    $query = "WITH movies AS ({$query}) SELECT * FROM movies WHERE Row# BETWEEN :lowerLimit and :upperLimit";
-
+    $query = "WITH movies AS ({$query}) SELECT * FROM movies WHERE Row# BETWEEN :lowerLimit and :upperLimit ORDER BY times_watched DESC";
+//    ob_clean();var_dump($query);var_dump(prepareAndExecute($query, $param)->fetchAll(PDO::FETCH_ASSOC));die;
     return prepareAndExecute($query, $param)->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -32,8 +38,7 @@ function getMovieCount(string $genre = "")
     if ($genre != "") {
         $query .= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
                     INNER JOIN Genre on Movie_Genre.genre_name = Genre.genre_name 
-                    WHERE Genre.genre_name = :genre
-                    ";
+                    WHERE Genre.genre_name = :genre "; // Space is important here
     }
 
     return prepareAndExecute($query, ["genre" => $genre])->fetch(PDO::FETCH_COLUMN, "movies")[0];
@@ -52,14 +57,16 @@ function getMovieDetails(int $movieId)
     return $statement->fetch(PDO::FETCH_ASSOC);
 }
 function getMovieCast(int $movieId){
-    $pdo = getPdo();
+    $query = "
+        SELECT 
+            role, 
+            lastname, 
+            firstname, 
+            gender 
+        FROM Movie_Cast, Person 
+        WHERE Movie_Cast.movie_id = :movieId AND Movie_Cast.person_id = Person.person_id";
 
-    $query = "SELECT role, lastname, firstname, gender FROM Movie_Cast, Person WHERE Movie_Cast.movie_id = :movieId AND Movie_Cast.person_id = Person.person_id";
-    $param = [];
-    $param[":movieId"] = $movieId;
-    $statement = $pdo->prepare($query);
-    $statement->execute($param);
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
+    return prepareAndExecute($query, ["movieId"=>$movieId])->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function validateUser(string $username, string $password)
@@ -69,11 +76,8 @@ function validateUser(string $username, string $password)
         FROM Customer 
         WHERE user_name = :username
     ";
-    $param = [
-        "username" => $username,
-    ];
 
-    $results = prepareAndExecute($query, $param)->fetchAll(PDO::FETCH_ASSOC);
+    $results = prepareAndExecute($query, ["username" => $username,])->fetchAll(PDO::FETCH_ASSOC);
     foreach ($results as $result) {
         if (password_verify($password, $result['password'])) {
             return $result['email'];
@@ -132,7 +136,22 @@ function getContracts(): array
 
 }
 
-function searchMovie($searchWord): array
+function searchMovie($searchWord, $page = 1): array
 {
-
+    $query = "
+        SELECT 
+            Movie.movie_id, 
+            title, 
+            Movie.description as description, 
+            cover_image, 
+            ROW_NUMBER() OVER(ORDER BY Movie.publication_year DESC) AS Row#,
+            (SELECT COUNT(*) FROM Watchhistory INNER JOIN Movie m ON m.movie_id = Watchhistory.movie_id) AS times_watched            
+        FROM Movie";
+    $query = "WITH movies AS ({$query}) SELECT * FROM movies WHERE title LIKE :search ORDER BY times_watched DESC";
+    $param = [
+        "search" => "%{$searchWord}%",
+        "lowerLimit" => (int)(($page - 1) * 51) + 1,
+        "upperLimit" => (int)(($page - 1) * 51) + 51,
+    ];
+    return prepareAndExecute($query, $param)->fetchAll(PDO::FETCH_ASSOC);
 }
