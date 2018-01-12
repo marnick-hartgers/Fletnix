@@ -38,6 +38,18 @@ body{
     height: 75px;
     filter: invert(1);
 }
+.movie_cast{
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+.movie_cast >div{
+    background-color: rgba(255,255,255,0.1);
+    margin: 5px;
+    padding: 5px;
+    min-width:150px;
+}
 
 @media screen and (max-width:1024px){
     main{
@@ -64,6 +76,7 @@ body{
     }
     .movie_desc{
         height: 100%;
+        width: 60%;
     }
     .movie_image{
         height: 100%;

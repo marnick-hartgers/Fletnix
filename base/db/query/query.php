@@ -8,7 +8,7 @@ function getGenres() : array {
 function getMovies(string $genre = "", int $page = 1) : array {
     $pdo = getPdo();
 
-    $query = "SELECT Movie.movie_id, title, Movie.description as description, cover_image, ROW_NUMBER() OVER(ORDER BY Movie.movie_id ASC) AS Row# FROM Movie";
+    $query = "SELECT Movie.movie_id, title, Movie.description as description, cover_image, ROW_NUMBER() OVER(ORDER BY Movie.publication_year DESC) AS Row# FROM Movie";
     $param = [];
     if ($genre != "") {
         $query.= " INNER JOIN Movie_Genre ON Movie.movie_id = Movie_Genre.movie_id
@@ -57,7 +57,16 @@ function getMovieDetails(int $movieId){
     $statement->execute($param);
 
     return $statement->fetch(PDO::FETCH_ASSOC);
+}
+function getMovieCast(int $movieId){
+    $pdo = getPdo();
 
+    $query = "SELECT role, lastname, firstname, gender FROM Movie_Cast, Person WHERE Movie_Cast.movie_id = :movieId AND Movie_Cast.person_id = Person.person_id";
+    $param = [];
+    $param[":movieId"] = $movieId;
+    $statement = $pdo->prepare($query);
+    $statement->execute($param);
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function validateUser(string $username, string $password) {
