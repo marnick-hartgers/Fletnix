@@ -2,7 +2,7 @@
 if (validateUserSession()) {
     header("Location: /");
 }
-handlePostParameters();
+handleLoginPostParameters();
 $cssFiles = ["/style/login.css"];
 echo
     head($cssFiles).
@@ -30,7 +30,7 @@ function loginForm():string{
     ";
 }
 
-function handlePostParameters() {
+function handleLoginPostParameters() {
     if(!isset($_POST["username"]) || !isset($_POST["password"])){
         return;
     }

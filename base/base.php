@@ -60,3 +60,20 @@ function getCurrentWeekday() {
 function getCurrentMonth() {
     return ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"][date("n")-1];
 }
+
+/**
+ * This function checks if the specified needles are present in the haystack
+ * @param array $needles The needles to search for
+ * @param array $haystack The haystack to search in
+ *
+ * @return bool true if all needles are present, false otherwise
+ */
+function allFieldsArePresent(array $needles, array $haystack) : bool {
+    foreach ($needles as $needle) {
+        if (isset($haystack[$needle]) === false) {
+
+            return false;
+        }
+    }
+    return true;
+}

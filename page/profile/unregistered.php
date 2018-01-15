@@ -1,7 +1,52 @@
 <?php
 
-echo  "
+function handleRegisterPostParameters() {
+    $requiredFields = [
+        "firstName",
+        "lastName",
+        "subscription",
+        "birthDate",
+        "username",
+        "country",
+        "payment_method",
+        "gender",
+        "password",
+        "passwordCheck"
+    ];
+    $returnCode = MISSING_FIELDS;
+    if (allFieldsArePresent($requiredFields, $_POST)) {
+        if ($_POST['password'] != $_POST['passwordCheck']) {
+            $returnCode = PASSWORDS_NO_MATCH;
+        }
+        else {
+            $returnCode = registerUser($_POST);
+        }
+    }
+    switch ($returnCode) {
+        case DATABASE_ERROR:
+            echo "something wrong in database";
+        break;
+        case MISSING_FIELDS:
+            echo "One or more fields are missing";
+        break;
+        case PASSWORDS_NO_MATCH:
+            echo "passwords don't match";
+        break;
+        case EMAIL_EXISTS:
+            echo "email address already exists";
+        break;
 
+        case ALL_OK:
+            handleLoginPostParameters();
+        break;
+        default:
+        break;
+    }
+}
+
+handleRegisterPostParameters();
+
+echo  "
         <main class='page-content'>
             <div class='content'> <!-- Validator zit te zeuren over missende h2-h6 bij article -->
 
@@ -31,15 +76,9 @@ Op elk moment is het mogelijk om credits te kopen(&euro; 1,- voor 10 credits)</p
                         <tr>
                             <td><label for='firstName'>Voor- en achternaam</label></td>
                             <td><input type='text' id='firstName' tabindex='1'> <input type='text' id='lastName' tabindex='2'></td>
-                            <td><label for='subscription'>Abonnement</label></td>
-                            <td>
-                                <select id='subscription' tabindex='6'>
-                                    <option value='1'>MaxiNix</option>
-                                    <option value='2'>PreNix</option>
-                                    <option value='3'>PostNix</option>
-                                </select>
-                            </td>
+                            <td colspan='2'>".makeContractInput()."</td>
                         </tr>
+                        <tr>
                         <tr>
                             <td><label for='birthDate'>Geboortedatum</label></td>
                             <td><input type='date' id='birthDate' tabindex='3'></td>
@@ -47,16 +86,23 @@ Op elk moment is het mogelijk om credits te kopen(&euro; 1,- voor 10 credits)</p
                             <td><input type='text' id='username' tabindex='7'></td>
                         </tr>
                         <tr>
-                            <td><label for='country'>Land</label></td>
-                            <td><input type='text' id='country' tabindex='4'></td>
+                            <td colspan='2'>".makeCountryInput()."</td>
                             <td><label for='password'>Wachtwoord</label></td>
                             <td><input type='password' id='password' tabindex='8'></td>
                         </tr>
                         <tr>
-                            <td><label for='IBAN'>Rekeningnummer</label></td>
-                            <td><input type='text' id='IBAN' tabindex='5' pattern='[A-Za-z]{2}[0-9]{2}[A-Za-z0-9]{0,30}'></td>
+                            <td><label for='cardNumber'>/label></td>
+                            <td><input type='text' id='cardNumber' tabindex='5'></td>
                             <td><label for='passwordCheck'>Wachtwoord</label></td>
                             <td><input type='password' id='passwordCheck' tabindex='9'></td>
+                        </tr>
+                        <tr>
+                            <td colspan='2'>".makePaymentMethodInput()."</td>
+                            <td><label for='email'>Email adress</label></td>
+                            <td><input type='text' id='email' tabindex='6'></td>
+                        </tr>
+                        <tr>
+                            <td colspan='2'>".makeGenderInput()."</td>
                         </tr>
                         <tr>
                             <td colspan='2'></td>
