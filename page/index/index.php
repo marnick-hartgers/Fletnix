@@ -1,20 +1,16 @@
 <?php
 
-$cssFiles = ["/style/index.css"];
-
-echo
-    head($cssFiles).
-    pageHeader()
-;
-
 if(validateUserSession()){
     header("Location: /browse");
     die();
 }
 
-echo "
-    <body>
-        <main class='page-content'>            
+$cssFiles = ["/style/index.css"];
+
+echo
+    head($cssFiles).
+    pageHeader().
+    "<main class='page-content'>            
             <article class='content welcomeWallpaper'>
                 <div class='welcomeHeaderContainer'>
                     <h2 class='welcomeHeader'>Alles van IMDB binnen handbereik</h2>               

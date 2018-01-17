@@ -18,7 +18,6 @@ echo
 function loginForm():string{
     global $validationMessage;
     return "
-    <body>
         <main class='page-content flex'>
             <div>
                 <fieldset>

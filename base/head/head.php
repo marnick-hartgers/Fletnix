@@ -16,6 +16,6 @@ function head($cssFiles = [])
     foreach($cssFiles as $css){
         $head = $head . "<link rel='stylesheet' href='$css'>";
     }
-    $head  = $head. '</head>';
+    $head  = $head. '</head><body>';
     return $head;
 }

@@ -55,7 +55,7 @@ function getNavigationTree(): array
         ],
         [
             "title" => "Abonnement",
-            "href" => "/subscription",
+            "href" => "/profile",
             "subitems" => [],
             "requireLogin"=>false
         ]

@@ -13,7 +13,7 @@ function buildMovie($movieData) : string {
             <a href='{$url}'>
                 <h2>".ucfirst($movieData['title'])."</h2>
                 <p>{$movieData['description']}</p>
-                <img src='$imgSource' alt='{$movieData['title']} poster'>
+                <img src='$imgSource' alt='".htmlentities($movieData['title'])." poster'>
             </a>
         </article>";
 }
