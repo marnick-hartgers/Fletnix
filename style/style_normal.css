@@ -20,6 +20,9 @@ main.flex {
     justify-content: space-around;
 }
 
+.flex_space_around{
+    justify-content: space-around !important;
+}
 article.flex{
     margin: 1em 1em;
     padding:1em;

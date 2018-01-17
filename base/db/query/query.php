@@ -149,7 +149,7 @@ function searchMovie($searchWord, $page = 1): array
         FROM Movie";
     $query = "WITH movies AS ({$query}) SELECT * FROM movies WHERE title LIKE :search ORDER BY times_watched DESC";
     $param = [
-        "search" => "%{$searchWord}%",
+        "search" => "%" . $searchWord . "%",
         "lowerLimit" => (int)(($page - 1) * 51) + 1,
         "upperLimit" => (int)(($page - 1) * 51) + 51,
     ];

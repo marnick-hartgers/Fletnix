@@ -19,10 +19,11 @@ function buildMovie($movieData) : string {
 }
 
 function buildMovieArticles() {
-    if (getUrlRoute(1) == "search") {
-        $movies = searchMovie($_POST['keyword']);
+    $urlRoute = getUrlRoute(1);
+    if ($urlRoute && str_split($urlRoute, 6)[0] == 'search' && isset($_GET['keyword'])) {
+        $movies = searchMovie($_GET['keyword'] . "");
     }
-    elseif (getUrlRoute(1) != false) {
+    elseif ($urlRoute != false) {
         $movies = getMovies(getUrlRoute(1));
     }
     else {
@@ -37,8 +38,9 @@ function buildMovieArticles() {
 
 function searchForm() {
     return "
-        <form action='/browse/search' method='post'>
-            <input type='text' name='keyword' placeholder='Zoek een film...'><input type='submit' value='Zoek'>
+        <form action='/browse/search' method='get'>
+            <input type='text' name='keyword' placeholder='Zoek een film...'>
+            <input type='submit' value='Zoek'>
         </form>";
 }
 
@@ -48,10 +50,12 @@ echo
 
 echo  "
         <main class='page-content flex'>
-                
-        
-        ".searchForm().buildMovieArticles()."
-            
+        <div>
+            ".searchForm()."
+        </div>
+        <div class='flex flex_space_around'>
+            ". buildMovieArticles()."   
+        </div>         
         </main>
     </body>
 </html>";

@@ -1,11 +1,8 @@
 <?php
 
-$migrateFunctions = [
-    "convertCustomerPasswords",
-];
+
 
 function migrateCheck() {
-    global $migrateFunctions;
     $queryResult = getPdo()->query(
         "SELECT CHARACTER_MAXIMUM_LENGTH as length 
         FROM INFORMATION_SCHEMA.COLUMNS 
@@ -14,8 +11,14 @@ function migrateCheck() {
         return;
     }
     includeDir(ROOT."migrations");
-    foreach ($migrateFunctions as $function) {
-        $function();
+    var_dump($migrateFunctions);
+
+    $migrateFunctions = [
+        "convertCustomerPasswords"
+    ];
+    
+    foreach ($migrateFunctions as $mfunction) {
+        $mfunction();
     }
 }
 migrateCheck();

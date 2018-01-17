@@ -1,8 +1,11 @@
 <?php
+
+$validationMessage = "";
+handleLoginPostParameters();
 if (validateUserSession()) {
     header("Location: /");
+    die();
 }
-handleLoginPostParameters();
 $cssFiles = ["/style/login.css"];
 echo
     head($cssFiles).
@@ -10,13 +13,18 @@ echo
     loginForm()
 ;
 
+
+
 function loginForm():string{
+    global $validationMessage;
     return "
     <body>
         <main class='page-content flex'>
             <div>
                 <fieldset>
                     <form class='login_form' method='POST' action='/login'>
+                        <h1>Login</h1>
+                        <p class='loginerror'>$validationMessage</p>
                         ".
                         makeInput("username", "Username", "text").
                         makeInput("password", "Password", "password").                      
@@ -31,6 +39,7 @@ function loginForm():string{
 }
 
 function handleLoginPostParameters() {
+    global $validationMessage;
     if(!isset($_POST["username"]) || !isset($_POST["password"])){
         return;
     }
@@ -49,5 +58,7 @@ function handleLoginPostParameters() {
         }
         $_SESSION = array_merge($_SESSION, $userData);
         $_SESSION['loggedInSince'] = time();
+    }else{
+        $validationMessage = "Gebruikersnaam wachtwoord incorrect";
     }
 }
