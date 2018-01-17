@@ -45,6 +45,8 @@ foreach ($userdata as $key => $value) {
     }
 }
 
-echo "</form>
+echo "
+            <input type='submit' value='Wijzig gegevens'>
+        </form>
     </div>
 </main>";

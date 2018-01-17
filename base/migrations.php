@@ -1,7 +1,5 @@
 <?php
 
-
-
 function migrateCheck() {
     $queryResult = getPdo()->query(
         "SELECT CHARACTER_MAXIMUM_LENGTH as length 
@@ -11,7 +9,6 @@ function migrateCheck() {
         return;
     }
     includeDir(ROOT."migrations");
-    var_dump($migrateFunctions);
 
     $migrateFunctions = [
         "convertCustomerPasswords"

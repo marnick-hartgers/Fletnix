@@ -33,20 +33,20 @@ function connect() : PDO{
  * @param array $parameters An array containing at least the required parameters
  * @return PDOStatement
  */
-function prepareAndExecute(string $query, array $parameters = []) : PDOStatement{
+function prepareAndExecute(string $query, array $parameters = []) : PDOStatement {
     try {
         $parameters = parametrize($query, $parameters);
         $statement = getPdo()->prepare($query);
 
         if (is_a($statement, "PDOStatement") === false) {
-            throw new PDOException(getPdo()->errorInfo()[2], getPdo()->errorInfo()[1]);
+            throw new Exception(getPdo()->errorInfo()[2], getPdo()->errorInfo()[1]);
         }
         elseif ($statement->execute($parameters) == false) {
-            throw new PDOException($statement->errorInfo()[2], $statement->errorInfo()[1]);
+            throw new Exception($statement->errorInfo()[2], $statement->errorInfo()[1]);
         } else {
             return $statement;
         }
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         echo $e->getMessage();
         echo "<br />Stopping exectution at db.php:34";
         die;
@@ -74,10 +74,9 @@ function parametrize(string $query, array $parameters) : array
             } elseif (isset($parameters[$parameter]) === true) {
                 $outputParameters[':' . $parameter] = $parameters[$parameter];
             } else {
-                $e = new PDOException(
+                throw new Exception(
                     "Invalid parameter number: number of bound variables does not match number of tokens. Missing parameter '{$parameter}'",
-                    "HY093");
-                $this->handleException($e, $query, $parameters);
+                    "093");
             }
         }
         $parameters = $outputParameters;

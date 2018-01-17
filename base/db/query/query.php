@@ -101,7 +101,14 @@ function validateUser(string $username, string $password)
 function getUserData(string $userEmail = ""): array
 {
     $query = "
-        SELECT customer_mail_address as mailAddress, user_name as username, contract_type, subscription_end, country_name, birth_date, gender
+        SELECT 
+            customer_mail_address as mailAddress, 
+            user_name as username, 
+            contract_type, 
+            subscription_end, 
+            country_name, 
+            birth_date, 
+            gender
         FROM Customer
         WHERE customer_mail_address = :userEmail
     ";

@@ -1,12 +1,48 @@
 <?php
 function addWatchRegister(array $movie, string $customerEmail ){
-    $pdo = getPdo();
+    $query = "
+    INSERT INTO Watchhistory (
+        movie_id, 
+        customer_mail_address, 
+        watch_date, 
+        price, 
+        invoiced
+    ) 
+    VALUES (
+        :movieid, 
+        :email, 
+        GETDATE(), 
+        :price, 
+        0
+    )";
+    $param = [
+        "movieid" => $movie["movie_id"],
+        "email" => $customerEmail,
+        "price" => $movie["price"],];
+    prepareAndExecute($query, $param);
+}
 
-    $query = "INSERT INTO Watchhistory (movie_id ,customer_mail_address, watch_date, price, invoiced) VALUES (:movieid, :email, GETDATE(), :price, 0)";
-    $param = [];
-    $param[":movieid"] = $movie["movie_id"];
-    $param[":email"] = $customerEmail;
-    $param[":price"] = $movie["price"];
-    $statement = $pdo->prepare($query);
-    $statement->execute($param);
+function insertCustomer($customerData)
+{
+
+    $query = "
+    INSERT INTO Customer
+        (customer_mail_address, lastname, firstname, payment_method, payment_card_number, contract_type, subscription_start,
+        user_name, password, country_name, gender, birth_date )
+    VALUES (
+        :email,
+        :lastName,
+        :firstName,
+        :payment_method,
+        :cardnumber,
+        :contract,
+        :subscriptionStart,
+        :username,
+        :password,
+        :country,
+        :gender,
+        :birthDate
+    )";
+
+    return prepareAndExecute($query, $customerData);
 }

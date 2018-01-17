@@ -183,7 +183,7 @@ section.sub-content {
     background: rgb(100, 100, 100);
 }
 
-.text_input{
+.text_input, .select_input{
     position: relative;
     height: 50px;
     width:250px;
@@ -195,7 +195,7 @@ section.sub-content {
     top:25px;
     transition: all 0.3s;
 }
-.text_input > input:focus + label{
+.text_input > input:focus + label, .text_input input[type="date"] + label {
     left: 0px;
     top: 0px;
 }
@@ -203,7 +203,7 @@ section.sub-content {
     left: 0px;
     top: 0px;
 }
-.text_input > input{
+.text_input > input, .select_input > select{
     position: absolute;
     left: 0;
     right: 0;
@@ -242,14 +242,3 @@ section.sub-content {
 }
 
 /* end content */
-
-font {
-    display: flex;
-}
-.xdebug-error{
-    z-index: 1;
-}
-
-.xdebug-error *{
-    color: initial;
-}

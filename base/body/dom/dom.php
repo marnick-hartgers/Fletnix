@@ -1,11 +1,11 @@
 <?php
 
-function makeInput($name = "", $label = "Label", $type = "text", $value = "")
+function makeInput(string $name = "", string $label = "Label", string $type = "text", $value = "")
 {
     $elementId = GUID();
 
     return "
-        <div class='text_input'>            
+        <div class='text_input'>
             <input type='$type' name='$name' value='$value' id='$elementId' required='' />
             <label for='$elementId'>$label</label>
         </div>
@@ -77,9 +77,8 @@ function makePaymentMethodInput($selectedValue = "")
         ";
 }
 
-function makeContractInput($selectedValue)
+function makeContractInput($selectedValue = "")
 {
-
     $radios = "";
 
     foreach (getContracts() as $contract) {
@@ -89,7 +88,7 @@ function makeContractInput($selectedValue)
             $checked = "checked";
         }
         $radios.= "
-            <input type='radio' name='contract' value='{$contract['contract']} id='$elementId' $checked required='' />
+            <input type='radio' name='contract' value='{$contract['contract']}' id='$elementId' $checked required='' />
             <label for='$elementId'>".ucfirst($contract['contract']).": &euro; {$contract['price']}</label>";
     }
 

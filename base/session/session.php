@@ -20,31 +20,13 @@ function validateUserSession() : bool{
 }
 
 function registerUser(array $userData) : int {
-    $userData['password'] = password_hash($userData['password']);
+    $userData['password'] = password_hash($userData['password'], PASSWORD_BCRYPT);
     $rows = prepareAndExecute("SELECT * FROM Customer WHERE customer_mail_address = :email", $userData)->fetchAll(PDO::FETCH_ASSOC);
     $userData['subscriptionStart'] = date("Y-m-d");
     if (count($rows) > 0) {
         return EMAIL_EXISTS;
     }
-    $query = "
-        INSERT INTO Customer
-            (customer_mail_address, lastname, firstname, payment_method, payment_card_number, contract_type, subscription_start, 
-                user_name, password, country_name, gender, birth_date )
-        VALUES (
-            :email,
-            :lastName,
-            :firstName,
-            :payment_method,
-            :cardNumber,
-            :contract,
-            :subscriptionStart,
-            :username,
-            :password,
-            :country,
-            :gender,
-            :birthDate
-        )";
-    switch (prepareAndExecute($query, $userData)->errorCode()) {
+    switch (insertCustomer($userData)->errorCode()) {
         case "00000":
             return ALL_OK;
         break;
@@ -52,4 +34,14 @@ function registerUser(array $userData) : int {
             return DATABASE_ERROR;
         break;
     }
+}
+
+function setUserSession($email)
+{
+    $userData = getUserData($email);
+    if (is_null($userData['subscription_end'])) {
+        $userData['subscription_end'] = false;
+    }
+    $_SESSION = array_merge($_SESSION, $userData);
+    $_SESSION['loggedInSince'] = time();
 }

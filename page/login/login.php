@@ -29,7 +29,7 @@ function loginForm():string{
                         makeInput("username", "Username", "text").
                         makeInput("password", "Password", "password").                      
                         "
-                        <input type='submit' />
+                        <input type='submit' value='Login'/>
                     </form>
                 </fieldset>
             </div>
@@ -52,13 +52,8 @@ function handleLoginPostParameters() {
      */
     $usersEmail = validateUser($username, $password);
     if($usersEmail != false) {
-        $userData = getUserData($usersEmail);
-        if (is_null($userData['subscription_end'])) {
-            $userData['subscription_end'] = false;
-        }
-        $_SESSION = array_merge($_SESSION, $userData);
-        $_SESSION['loggedInSince'] = time();
+        setUserSession($usersEmail);
     }else{
-        $validationMessage = "Gebruikersnaam wachtwoord incorrect";
+        $validationMessage = "Gebruikersnaam of wachtwoord incorrect";
     }
 }
