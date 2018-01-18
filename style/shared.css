@@ -136,6 +136,13 @@ h1.header_title > a {
     left: -10em;
 }
 
+.header_index .browse {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column wrap;
+    max-height: 500px;
+    width: 240px;
+}
 
 /* end header*/
 

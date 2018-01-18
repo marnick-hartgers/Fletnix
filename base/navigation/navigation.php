@@ -45,7 +45,8 @@ function getNavigationTree(): array
             "title" => "Browse",
             "href" => "/browse",
             "subitems" => getMovieNavigation(),
-            "requireLogin" => true
+            "requireLogin" => true,
+            "class" => 'browse'
         ],
         [
             "title" => "Over ons",
@@ -82,10 +83,11 @@ function buildNavigationItem(array $navItem): string
     }
     $title = $navItem["title"];
     $href = $navItem["href"];
+    $class = isset($navItem['class']) ? "class='{$navItem['class']}'" : "";
     $itemString = "
     <li>
         <a href='$href' >$title</a>
-        <ul>";
+        <ul $class>";
     foreach ($navItem["subitems"] as $subitem) {
         $itemString = $itemString . buildNavigationItem($subitem);
     }
