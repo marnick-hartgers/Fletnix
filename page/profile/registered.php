@@ -46,7 +46,7 @@ foreach ($userdata as $key => $value) {
 }
 
 echo "
-            <input type='submit' value='Wijzig gegevens'>
+            <div class='submit_input'><input type='submit' value='Wijzig gegevens'></div>
         </form>
     </div>
 </main>";

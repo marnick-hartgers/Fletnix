@@ -110,7 +110,7 @@ foreach ($requestedFields as $name => $field) {
 }
 
 echo "
-                    <input type='submit' value='Registreer'>
+                    <div class='submit_input'><input type='submit' value='Registreer'></div>
                 </form>
             </div>
         </main>

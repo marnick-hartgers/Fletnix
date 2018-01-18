@@ -39,8 +39,8 @@ function buildMovieArticles() {
 function searchForm() {
     return "
         <form action='/browse/search' method='get'>
-            <input type='text' name='keyword' placeholder='Zoek een film...'>
-            <input type='submit' value='Zoek'>
+            ".makeInputWithSubmit("keyword", "Zoek een filmtitel...", "Zoek")."
+            
         </form>";
 }
 

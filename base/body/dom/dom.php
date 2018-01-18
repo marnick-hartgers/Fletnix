@@ -12,6 +12,20 @@ function makeInput(string $name = "", string $label = "Label", string $type = "t
     ";
 }
 
+function makeInputWithSubmit(string $name = "", string $label = "Label", string $buttonValue = "Verzend", string $type = "text", $value = "")
+{
+    $elementId = GUID();
+
+    return "
+        <div class='text_input text_input_with_submit'>
+            <input type='$type' name='$name' value='$value' id='$elementId' required='' />
+            <label for='$elementId'>$label</label>
+            <input type='submit' value='$buttonValue'>
+        </div>
+    ";
+}
+
+
 function makeGenderInput($selectedValue = "", $name = "gender")
 {
     $elementId = ["M" => GUID(), "F" => GUID()];

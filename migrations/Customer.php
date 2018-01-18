@@ -1,9 +1,17 @@
 <?php
 
+function convertCustomerColumns() {
+    $columns = getColumnInfo("Customer");
+    if ($columns['password']['length'] < 60) {
+        getPdo()->query("ALTER TABLE Customer ALTER COLUMN password VARCHAR(60)");
+        convertCustomerPasswords();
+    }
+}
+
 function convertCustomerPasswords() {
-    $pdo = getPdo();
-    $pdo->query("ALTER TABLE Customer ALTER COLUMN password VARCHAR(60)");
-    $users = $pdo->query("SELECT customer_mail_address as mail, password FROM Customer")->fetchAll(PDO::FETCH_ASSOC);
+    $users = getPdo()->query("
+        SELECT customer_mail_address as mail, password 
+        FROM Customer")->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($users as $key => $value) {
         convertCustomerPassword($value['password'], $value['mail']);

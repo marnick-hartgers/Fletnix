@@ -29,15 +29,15 @@ function generateMovieStats($movieDetails,$cast){
     $movieCast = generateMovieCast($cast);
     return "
         <div class='movie_image'>
-            <img src='$imgSource'>
-            <a href='$playLink'><img src='/img/buttons/play.png'></a>
+            <img src='$imgSource' alt='".htmlentities($title)." poster'>
+            <a href='$playLink'><img src='/img/buttons/play.png' alt='".htmlentities($title)." afspelen'></a>
         </div>
         <article class='movie_desc'>
-            <h1>$title</h1>
+            <h2>$title</h2>
             <p>Year:$year</p>
             <p>Speeltijd: $duration</p>
             <p>$description</p>
-            <h2>Cast</h2>
+            <h3>Cast</h3>
             $movieCast
         </article>
     ";
@@ -65,8 +65,6 @@ head($cssFiles).
 pageHeader(true);
 
 echo  "
-    <main class='page-content'>    
-    ".generateMovieDetails()."        
-    </main>
-</body>
-</html>";
+    <main class='page-content'>
+    ".generateMovieDetails()."
+    </main>";

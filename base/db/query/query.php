@@ -88,6 +88,7 @@ function validateUser(string $username, string $password)
 
 /**
  * This function returns the following fields of the specified user:
+ *  - customer_mail_address as mailAddress
  *  - user_name as username
  *  - contract_type
  *  - subscription_end

@@ -183,7 +183,7 @@ section.sub-content {
     background: rgb(100, 100, 100);
 }
 
-.text_input, .select_input{
+.text_input, .select_input, .submit_input{
     position: relative;
     height: 50px;
     width:250px;
@@ -203,11 +203,11 @@ section.sub-content {
     left: 0px;
     top: 0px;
 }
-.text_input > input, .select_input > select{
+.text_input > input, .select_input > select, .submit_input > input{
     position: absolute;
     left: 0;
     right: 0;
-    top:20px;
+    top: 20px;
     bottom: 0;
     background: rgb(100,100,100);
     border: none;
@@ -215,6 +215,13 @@ section.sub-content {
     padding:5px;
     color:white;
     outline: 0;
+}
+.text_input > input[type='submit'] {
+    position: absolute;
+    left: 170px;
+    top: 20px;
+    width: 50px;
+    height : 27px;
 }
 .text_input > input:focus{
     background: rgb(130,130,130);
