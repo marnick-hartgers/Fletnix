@@ -7,8 +7,12 @@
  */
 function redirectToPage() {
 
+    $unregisteredPages = ["about", "profile", "login"];
     $page = getUrlRoute(0);
-    if ($page != "") {
+    if (validateUserSession() == false && in_array($page, $unregisteredPages) === false) {
+        // Disallow a non-authorized user from most pages
+    }
+    elseif ($page != "") {
         $pageDir = "page".DIRECTORY_SEPARATOR.$page;
         if (is_dir(ROOT.$pageDir)) {
             include_once ROOT.$pageDir.DIRECTORY_SEPARATOR.$page.".php";
