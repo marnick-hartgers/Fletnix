@@ -13,11 +13,12 @@ function generateMovieDetails(){
         $movieId = (int)$movieIdString;
         $movieDetails = getMovieDetails($movieId);
         $cast =  getMovieCast($movieId);
-        return generateMovieStats($movieDetails,$cast);
+        $directors = getMovieDirectors($movieId);
+        return generateMovieStats($movieDetails,$cast, $directors);
     }    
 }
 
-function generateMovieStats($movieDetails,$cast){
+function generateMovieStats($movieDetails,$cast, $directors){
     $title = $movieDetails["title"];
     $description = $movieDetails["description"];
     $imgSource = "/img/movies/" . $movieDetails["cover_image"];
@@ -26,7 +27,9 @@ function generateMovieStats($movieDetails,$cast){
     $playLink = "/watch/" . $movieDetails["movie_id"];
     $duration = $movieDetails["duration"] . "min";
     $year = $movieDetails["publication_year"];
+    $price = $movieDetails["price"];
     $movieCast = generateMovieCast($cast);
+    $directors = generateMovieDirectors($directors);
     return "
         <div class='movie_image'>
             <img src='$imgSource' alt='".htmlentities($title)." poster'>
@@ -34,11 +37,14 @@ function generateMovieStats($movieDetails,$cast){
         </div>
         <article class='movie_desc'>
             <h2>$title</h2>
-            <p>Year:$year</p>
+            <p>Year: $year</p>
             <p>Speeltijd: $duration</p>
+            <p>Price: &euro;$price</p>
             <p>$description</p>
             <h3>Cast</h3>
             $movieCast
+            <h3>Directors</h3>
+            $directors
         </article>
     ";
 }
@@ -58,6 +64,20 @@ function generateMovieCast($cast){
     }
     $castStr .= "</div>";
     return $castStr;
+}
+function generateMovieDirectors($dirs){
+    $dirStr = "<div class='movie_cast'>";
+    foreach($dirs as $person){
+        //role, lastname, firstname, gender
+        $name = $person["firstname"] . " " . $person["lastname"];
+        $dirStr .= "
+        <div>
+            <h3>$name</h3>
+        </div>
+        ";
+    }
+    $dirStr .= "</div>";
+    return $dirStr;
 }
 
 echo

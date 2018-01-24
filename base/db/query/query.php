@@ -69,6 +69,18 @@ function getMovieCast(int $movieId){
     return prepareAndExecute($query, ["movieId"=>$movieId])->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getMovieDirectors(int $movieId){
+    $query = "
+    SELECT  
+        lastname, 
+        firstname, 
+        gender 
+    FROM Movie_Director, Person 
+    WHERE Movie_Director.movie_id = :movieId AND Movie_Director.person_id = Person.person_id";
+
+    return prepareAndExecute($query, ["movieId"=>$movieId])->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function validateUser(string $username, string $password)
 {
     $query = "

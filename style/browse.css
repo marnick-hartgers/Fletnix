@@ -13,6 +13,11 @@ article.content img {
     width: 20%;
 }
 
+.search_button{
+    margin-left: 11px;
+    height: 30px !important;
+}
+
 main {
     flex-wrap: wrap;
     justify-content: space-around;

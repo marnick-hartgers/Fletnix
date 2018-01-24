@@ -20,7 +20,7 @@ function makeInputWithSubmit(string $name = "", string $label = "Label", string 
         <div class='text_input text_input_with_submit'>
             <input type='$type' name='$name' value='$value' id='$elementId' required='' />
             <label for='$elementId'>$label</label>
-            <input type='submit' value='$buttonValue'>
+            <input type='submit' class='search_button' value='$buttonValue'>
         </div>
     ";
 }
